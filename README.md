@@ -8,15 +8,13 @@ With **Apache**, **PHP**, **MySQL** & **PhpMyAdmin**
 
 The following three separate service containers will be used:
 
-- `php` service running PHP 8.
+- `php` service running PHP 8. (Created from Dockerfile)
 
-- `apache` running Apache2.
+- `apache` running Apache2. (Created from Dockerfile)
 
-- `db` service running MySQL.
+- `db` service running MySQL. (Created from Image)
 
-- `phpmyadmin` service running PhpMyAdmin.
-
-PHP code before serving the application to the final user.
+- `phpmyadmin` service running PhpMyAdmin. (Created from Image)
 
 # Setting up
 
