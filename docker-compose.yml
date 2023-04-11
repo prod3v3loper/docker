@@ -1,0 +1,85 @@
+##########################################
+#
+# Docker-Compose
+#
+# See:          https://www.docker.com/
+# See:          https://hub.docker.com/
+#
+# Author:       prod3v3loper
+# Copyright: 
+# Since:        v1.0
+#
+##########################################
+
+version: "3.8" # Version
+
+services:
+
+    # --- PHP #
+    #
+    #
+    php:
+        container_name: "php"
+        build:
+            context: .
+            dockerfile: Dockerfile
+        ports:
+            - 8000:80
+        volumes:
+            - ./var/www:/var/www/html/
+            # - ./php:/usr/local/etc/php
+        depends_on:
+            - db
+
+    # --- APACHE #
+    #
+    #
+    apache:
+        container_name: "apache"
+        build:
+            context: .
+            dockerfile: Dockerfile
+        ports:
+            - 80:80
+        volumes:
+            - ./var/www:/var/www/html/
+            - ./apache2/log:/var/log/apache2
+        depends_on:
+            - php
+            - db
+
+    # --- MYSQL #
+    #
+    #
+    db:
+        container_name: "mysql"
+        image: mysql:8.0.32
+        ports: 
+            - 3306:3306
+        environment:
+            MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+            MYSQL_DATABASE: ${DB_DATABASE}
+            MYSQL_PASSWORD: ${DB_PASSWORD}
+        env_file:
+            - ./.env
+        volumes:
+            - ./dump:/docker-entrypoint-initdb.d
+            - ./mysql:/var/lib/mysql
+
+    # --- PHPMYADMIN #
+    #
+    # See: https://docs.phpmyadmin.net/en/latest/setup.html#installing-using-docker
+    #
+    phpmyadmin:
+        container_name: "phpmyadmin"
+        image: phpmyadmin:5.2.1
+        ports:
+            - 8080:80
+        environment:
+            PMA_HOST: ${DB_HOST}
+            PMA_USER: ${DB_USERNAME}
+            PMA_PASSWORD: ${DB_PASSWORD}
+        env_file:
+            - ./.env
+        depends_on:
+            - db
