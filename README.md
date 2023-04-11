@@ -51,7 +51,7 @@ docker-compose ps -a
 
 You can use the docker-compose exec command to execute commands in the service containers, such as an ls -l to show detailed information about files in the application directory:
 ```bash
-docker-compose exec app ls -l
+docker-compose exec <CONTAINER-ID> ls -l
 ```
 
 Or go direct in the container per bash:
@@ -76,5 +76,5 @@ docker-compose down
 
 Build the app image to upload in dockerhub:
 ```bash
-docker-compose build
+docker-compose build <CONTAINER-ID>
 ```
