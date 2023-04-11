@@ -1,14 +1,14 @@
 # PHP 8 development environment 
 
-With **PHP-FPM**, **Nginx** and **MySQL**
+With **Apache**, **PHP**, **MySQL** & **PhpMyAdmin**
 
 > You need to have Docker installed on your server to proceed using this PHP environment.
 
 The following three separate service containers will be used:
 
-An `app` service running PHP 8 FPM.
+An `php` service running PHP 8.
+A `apache` running Apache2.
 A `db` service running MySQL.
-An `nginx` service that uses the app service to parse.
 
 PHP code before serving the application to the final user.
 

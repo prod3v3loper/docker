@@ -25,6 +25,7 @@ RUN apt-get update && apt-get install -y \
 # Install PHP extensions
 RUN docker-php-ext-install pdo pdo_mysql mysqli && docker-php-ext-enable mysqli
 
+# Copy files to container htdocs
 COPY ./var/www /var/www/html/
 
 # Set working directory
