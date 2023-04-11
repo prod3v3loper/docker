@@ -7,7 +7,9 @@ With **Apache**, **PHP**, **MySQL** & **PhpMyAdmin**
 The following three separate service containers will be used:
 
 An `php` service running PHP 8.
+
 A `apache` running Apache2.
+
 A `db` service running MySQL.
 
 PHP code before serving the application to the final user.
