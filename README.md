@@ -27,11 +27,6 @@ DB_USERNAME=user
 DB_PASSWORD=pass
 ```
 
-Build the app image with the following command:
-```bash
-docker-compose build app
-```
-
 When the build is finished, you can run the environment in background mode with:
 ```bash
 docker-compose up -d
@@ -88,4 +83,9 @@ docker-compose unpause
 To shut down your Docker Compose environment and remove all of its containers, networks, and volumes, run:
 ```bash
 docker-compose down
+```
+
+Build the app image to upload in dockerhub:
+```bash
+docker-compose build app
 ```
