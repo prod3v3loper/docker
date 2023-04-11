@@ -4,17 +4,21 @@ With **Apache**, **PHP**, **MySQL** & **PhpMyAdmin**
 
 > You need to have Docker installed on your server to proceed using this PHP environment.
 
+> Donwload Docker: https://www.docker.com/
+
 The following three separate service containers will be used:
 
-An `php` service running PHP 8.
+- `php` service running PHP 8.
 
-A `apache` running Apache2.
+- `apache` running Apache2.
 
-A `db` service running MySQL.
+- `db` service running MySQL.
+
+- `phpmyadmin` service running PhpMyAdmin.
 
 PHP code before serving the application to the final user.
 
-# Running the environment
+# Setting up
 
 Set the MySQL environment variables creating a `.env` file based on the `.env` file.
 
@@ -26,6 +30,8 @@ DB_DATABASE=database
 DB_USERNAME=user
 DB_PASSWORD=pass
 ```
+
+# Running the environment
 
 When the build is finished, you can run the environment in background mode with:
 ```bash
