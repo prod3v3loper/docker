@@ -17,11 +17,12 @@ jobs:
     - name: Build the Docker image
       run: |
           touch .env
+          echo MYSQL_ROOT_PASSWORD: root >> .env
           echo DB_DATABASE: test >> .env
           echo DB_HOST: test >> .env
           echo DB_USERNAME: root >> .env
           echo DB_PASSWORD: test >> .env
           echo "cat .env"
           cat .env
-          docker-compose up
+          docker-compose up -d
       shell: bash
