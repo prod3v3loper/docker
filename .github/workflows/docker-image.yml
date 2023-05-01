@@ -25,5 +25,5 @@ jobs:
           echo DB_PASSWORD: test >> .env
           echo "cat .env"
           cat .env
-          docker-compose up
+          docker-compose up -d
       shell: bash
