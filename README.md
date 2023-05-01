@@ -18,7 +18,13 @@ The following three separate service containers will be used:
 
 # Setting up
 
-Set the MySQL environment variables creating a `.env` file based on the `.env` file.
+Get the project per `git` or donwload it from github https://github.com/prod3v3loper/docker/releases.
+
+```bash
+$ git clone https://github.com/prod3v3loper/docker.git
+```
+
+Set the MySQL environment variables creating a `.env` file with:
 
 ```js
 DB_CONNECTION=mysql
