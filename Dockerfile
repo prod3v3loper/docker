@@ -5,8 +5,10 @@
 # See:          
 #
 # Author:       prod3v3loper
-# Copyright: 
+# Copyright:    prod3v3loper
+# License:      MIT
 # Since:        v1.0
+# Link:         https://github.com/prod3v3loper/docker
 #
 ##########################################
 
