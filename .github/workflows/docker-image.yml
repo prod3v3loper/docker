@@ -11,6 +11,12 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    
+    env:
+      DB_DATABASE: test
+      DB_HOST: test
+      DB_USERNAME: root
+      DB_PASSWORD: test
 
     steps:
     - uses: actions/checkout@v3
