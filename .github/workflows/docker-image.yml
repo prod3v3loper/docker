@@ -16,6 +16,7 @@ jobs:
     - uses: actions/checkout@v3
     - name: Build the Docker image
       run: |
+          echo "create .env file"
           touch .env
           echo MYSQL_ROOT_PASSWORD: root >> .env
           echo DB_DATABASE: test >> .env
@@ -24,5 +25,5 @@ jobs:
           echo DB_PASSWORD: test >> .env
           echo "cat .env"
           cat .env
-          docker-compose up -d
+          docker-compose up
       shell: bash
