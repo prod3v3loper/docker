@@ -1,9 +1,7 @@
 name: Bug Report
-description: File a bug report
+description: Bug report description
 title: "[Bug]: "
 labels: ["bug", "triage"]
-assignees:
-  - prod3v3loper
 body:
   - type: markdown
     attributes:
