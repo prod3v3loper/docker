@@ -12,7 +12,7 @@
 #
 ##########################################
 
-FROM php:8.0-apache
+FROM php:8.1-apache
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
@@ -28,21 +28,17 @@ RUN apt-get update && apt-get install -y \
 RUN docker-php-ext-install pdo pdo_mysql mysqli && docker-php-ext-enable mysqli
 
 # Copy files to container htdocs
-COPY ./var/www /var/www/html/
+COPY /var/www /var/www/html/
 
 # Set working directory
 WORKDIR /var/www/html/
 
-# COPY ./apache/vhost.conf /etc/apache2/sites-available/000-default.conf
-
+# NPM actions
 # RUN npm install --production
 
-# Get latest Composer
+# COMPOSER actions
 # COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Use the default production configuration
-RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
-
-RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
+RUN a2enmod rewrite
 
 CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
