@@ -2,6 +2,10 @@
 
 With **Apache**, **PHP**, **MySQL** & **PhpMyAdmin**
 
+| localhost | phpmyadmin |
+| --- | --- |
+| <img src="img/localhost.png" width="431"> | <img src="img/phpmyadmin.png" width="300"> |
+
 > You need to have Docker installed on your server to proceed using this PHP environment.
 
 > Donwload Docker: https://www.docker.com/
