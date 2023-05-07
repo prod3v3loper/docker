@@ -3,7 +3,7 @@ description: File a bug report
 title: "[Bug]: "
 labels: ["bug", "triage"]
 assignees:
-  - octocat
+  - prod3v3loper
 body:
   - type: markdown
     attributes:
@@ -37,7 +37,7 @@ body:
               3. Scroll down to '....'
               4. See error"
   - type: textarea
-    id: steps-reproduce
+    id: used-systems
     attributes:
       label: Device and information
       description: A description of your device and their informations
