@@ -4,17 +4,18 @@ With **Apache**, **PHP**, **MySQL** & **PhpMyAdmin**
 
 | localhost | phpmyadmin |
 | --- | --- |
-| <img src="img/localhost.png" width="431"> | <img src="img/phpmyadmin.png" width="300"> |
+| <img src="img/localhost.png" width="424"> | <img src="img/phpmyadmin.png" width="300"> |
+| http://localhost:8002 | http://localhost:8003 |
 
 > You need to have Docker installed on your server to proceed using this PHP environment.
 
 > Donwload Docker: https://www.docker.com/
 
-The following three separate service containers will be used:
+The following four separate service containers will be used:
 
 - `php` service running PHP 8. (Created from Dockerfile)
 
-- `apache` running Apache2. (Created from Dockerfile)
+- `apache` service running Apache2. (Created from Dockerfile)
 
 - `db` service running MySQL. (Created from Image)
 
@@ -47,7 +48,10 @@ docker-compose up -d
 ```
 
 Now go to your browser and access your server’s domain name or IP address on port 8002. 
-In case you are running this demo on your local machine, use http://localhost:8002 to access the application from your browser. PhpMyAdmin can access via: http://localhost:8003, is defined in `docker-compose.yml`
+
+In case you are running this demo on your local machine, use http://localhost:8002 to access the application from your browser. 
+
+PhpMyAdmin can access via: http://localhost:8003, is defined in `docker-compose.yml`
 
 To show information about the state of your active services, run:
 ```bash
