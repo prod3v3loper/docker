@@ -83,8 +83,6 @@ services:
             - 8003:80
         environment:
             PMA_HOST: db
-        env_file:
-            - ./.env
         links:
             - db
         networks:
