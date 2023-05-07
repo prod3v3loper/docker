@@ -18,7 +18,13 @@ The following three separate service containers will be used:
 
 # Setting up
 
-Set the MySQL environment variables creating a `.env` file based on the `.env` file.
+Get the project per `git` or donwload it from github https://github.com/prod3v3loper/docker/releases.
+
+```bash
+$ git clone https://github.com/prod3v3loper/docker.git
+```
+
+Set the MySQL environment variables creating a `.env` file with:
 
 ```js
 DB_CONNECTION=mysql
@@ -36,8 +42,8 @@ When the build is finished, you can run the environment in background mode with:
 docker-compose up -d
 ```
 
-Now go to your browser and access your server’s domain name or IP address on port 8000. 
-In case you are running this demo on your local machine, use http://localhost or http://localhost:8000 to access the application from your browser. PhpMyAdmin can access via: http://localhost:8080 no user or password need, is in docker-compose.yml
+Now go to your browser and access your server’s domain name or IP address on port 8002. 
+In case you are running this demo on your local machine, use http://localhost:8002 to access the application from your browser. PhpMyAdmin can access via: http://localhost:8003, is defined in `docker-compose.yml`
 
 To show information about the state of your active services, run:
 ```bash
@@ -56,6 +62,11 @@ docker-compose exec <CONTAINER-ID> ls -l
 
 Or go direct in the container per bash:
 ```bash
+docker exec -it <CONTAINER-ID> bash
+```
+
+If you not in a bash environment, get bash in this project and run:
+```bash
 docker exec -it <CONTAINER-ID> /bin/bash
 ```
 
@@ -67,6 +78,11 @@ docker-compose up
 Rebuild to recreate the images and settings
 ```bash
 docker-compose up -d --no-deps --build
+```
+
+Copy files from container
+```bash
+docker cp <CONTAINER-ID>:/usr/local/etc/php php
 ```
 
 To shut down your Docker Compose environment and remove all of its containers, networks, and volumes, run:

@@ -2,8 +2,6 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ "main", "dev" ]
-  pull_request:
     branches: [ "main" ]
 
 jobs:
@@ -14,16 +12,16 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Build the Docker image
+    - name: Create .env file
       run: |
           echo "create .env file"
           touch .env
-          echo MYSQL_ROOT_PASSWORD: root >> .env
-          echo DB_DATABASE: test >> .env
-          echo DB_HOST: test >> .env
-          echo DB_USERNAME: root >> .env
-          echo DB_PASSWORD: test >> .env
+          echo MYSQL_ROOT_PASSWORD=root >> .env
+          echo DB_DATABASE=test >> .env
+          echo DB_HOST=test >> .env
+          echo DB_USERNAME=root >> .env
+          echo DB_PASSWORD=test >> .env
           echo "cat .env"
           cat .env
-          docker-compose up
-      shell: bash
+    - name: Build the Docker image
+      run: docker-compose up -d

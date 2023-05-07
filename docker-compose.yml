@@ -6,8 +6,10 @@
 # See:          https://hub.docker.com/
 #
 # Author:       prod3v3loper
-# Copyright: 
+# Copyright:    prod3v3loper
+# License:      MIT
 # Since:        v1.0
+# Link:         https://github.com/prod3v3loper/docker
 #
 ##########################################
 
@@ -19,43 +21,45 @@ services:
     #
     #
     php:
-        container_name: "php"
+        container_name: "github-sample-php"
         build:
             context: .
             dockerfile: Dockerfile
-        ports:
-            - 8000:80
         volumes:
-            - ./var/www:/var/www/html/
-            # - ./php:/usr/local/etc/php
-        depends_on:
-            - db
+            - ./php/php.ini:/usr/local/etc/php/php.ini
+        networks:
+            - github-sample-app
 
     # --- APACHE #
     #
     #
     apache:
-        container_name: "apache"
+        container_name: "github-sample-apache"
         build:
             context: .
             dockerfile: Dockerfile
         ports:
-            - 80:80
+            - 8002:80
         volumes:
             - ./var/www:/var/www/html/
-            - ./apache2/log:/var/log/apache2
-        depends_on:
-            - php
+            - ./apache2/log:/var/log/apache2/
+            - ./apache/apache2.conf:/etc/apache2/apache2.conf
+            - ./apache/httpd.conf:/etc/apache2/sites-available/httpd.conf
+            - ./apache/vhost.conf:/etc/apache2/sites-available/000-default.conf
+        links:
             - db
+            - php
+        networks:
+            - github-sample-app
 
     # --- MYSQL #
     #
     #
     db:
-        container_name: "mysql"
+        container_name: "github-sample-mysql"
         image: mysql:8.0.32
         ports: 
-            - 3306:3306
+            - 6606:3306
         environment:
             MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
             MYSQL_DATABASE: ${DB_DATABASE}
@@ -64,22 +68,29 @@ services:
             - ./.env
         volumes:
             - ./dump:/docker-entrypoint-initdb.d
-            - ./mysql:/var/lib/mysql
+            - ./mysql:/var/lib/mysql/
+        networks:
+            - github-sample-app
 
     # --- PHPMYADMIN #
     #
     # See: https://docs.phpmyadmin.net/en/latest/setup.html#installing-using-docker
     #
     phpmyadmin:
-        container_name: "phpmyadmin"
+        container_name: "github-sample-phpmyadmin"
         image: phpmyadmin:5.2.1
         ports:
-            - 8080:80
+            - 8003:80
         environment:
-            PMA_HOST: ${DB_HOST}
-            PMA_USER: ${DB_USERNAME}
-            PMA_PASSWORD: ${DB_PASSWORD}
-        env_file:
-            - ./.env
-        depends_on:
+            PMA_HOST: db
+        links:
             - db
+        networks:
+            - github-sample-app
+
+networks:
+    github-sample-app:
+        driver: bridge
+
+volumes:
+    db:
