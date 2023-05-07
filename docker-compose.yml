@@ -94,4 +94,3 @@ networks:
 
 volumes:
     db:
-        driver: bridge
