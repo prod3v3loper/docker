@@ -1,0 +1,6 @@
+.docker
+.env
+mysql
+*.log
+.github
+.gitignore

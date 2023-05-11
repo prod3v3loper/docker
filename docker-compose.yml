@@ -2,13 +2,13 @@
 #
 # Docker-Compose
 #
-# See:          https://www.docker.com/
+# See:          https://docs.docker.com/compose/
 # See:          https://hub.docker.com/
 #
 # Author:       prod3v3loper
 # Copyright:    prod3v3loper
 # License:      MIT
-# Since:        v1.0
+# Since:        v1.0.0
 # Link:         https://github.com/prod3v3loper/docker
 #
 ##########################################
@@ -21,7 +21,7 @@ services:
     #
     #
     php:
-        container_name: "github-sample-php"
+        container_name: "docker-php"
         build:
             context: .
             dockerfile: Dockerfile
@@ -34,7 +34,7 @@ services:
     #
     #
     apache:
-        container_name: "github-sample-apache"
+        container_name: "docker-apache"
         build:
             context: .
             dockerfile: Dockerfile
@@ -56,10 +56,12 @@ services:
     #
     #
     db:
-        container_name: "github-sample-mysql"
+        container_name: "docker-mysql"
         image: mysql:8.0.32
-        ports: 
+        ports:
             - 6606:3306
+        build:
+            context: .
         environment:
             MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
             MYSQL_DATABASE: ${DB_DATABASE}
@@ -77,8 +79,10 @@ services:
     # See: https://docs.phpmyadmin.net/en/latest/setup.html#installing-using-docker
     #
     phpmyadmin:
-        container_name: "github-sample-phpmyadmin"
+        container_name: "docker-phpmyadmin"
         image: phpmyadmin:5.2.1
+        build:
+            context: .
         ports:
             - 8003:80
         environment:
